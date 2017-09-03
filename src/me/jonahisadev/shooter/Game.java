@@ -3,6 +3,7 @@ package me.jonahisadev.shooter;
 import com.amittaigames.engine.CoreGame;
 import com.amittaigames.engine.graphics.Render;
 import com.amittaigames.engine.graphics.Window;
+import me.jonahisadev.shooter.block.Block;
 
 public class Game extends CoreGame {
 	
@@ -12,12 +13,16 @@ public class Game extends CoreGame {
 	
 	@Override
 	public void init() {
-	
+		Map.load("test");
 	}
 	
 	@Override
 	public void render(Render render) {
 		render.clear(0, 128, 255);
+		
+		for (Block b : Map.getBlockList()) {
+			render.drawRect(b.getRect());
+		}
 	}
 	
 	@Override
