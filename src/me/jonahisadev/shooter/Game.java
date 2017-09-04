@@ -58,16 +58,31 @@ public class Game extends CoreGame {
 		// Player movement
 		if (Window.isKeyDown(Keys.KEY_D)) {
 			player.getMesh().translate(player.getSpeed() * v, 0);
+			player.setSpriteState(Player.SpriteState.RUNNING);
 		}
 		if (Window.isKeyDown(Keys.KEY_A)) {
 			player.getMesh().translate(-player.getSpeed() * v, 0);
+			player.setSpriteState(Player.SpriteState.RUNNING);
 		}
 		if (Window.isKeyDown(Keys.KEY_W)) {
 			player.getMesh().translate(0, -player.getSpeed() * v);
+			player.setSpriteState(Player.SpriteState.RUNNING);
 		}
 		if (Window.isKeyDown(Keys.KEY_S)) {
 			player.getMesh().translate(0, player.getSpeed() * v);
+			player.setSpriteState(Player.SpriteState.RUNNING);
 		}
+		
+		// Check if the player is moving at all
+		if (!Window.isKeyDown(Keys.KEY_D) &&
+				!Window.isKeyDown(Keys.KEY_A) &&
+				!Window.isKeyDown(Keys.KEY_W) &&
+				!Window.isKeyDown(Keys.KEY_S)) {
+			player.setSpriteState(Player.SpriteState.STANDING);
+		}
+		
+		// Player Sprites
+		player.updateSprite();
 		
 		// Quit
 		if (Window.isKeyDown(Keys.KEY_ESCAPE)) {
